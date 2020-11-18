@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'project';
+  title = 'login';
+  loginClick(event: Event) {
+    console.log('Login clicked', event);
+  }
 }
