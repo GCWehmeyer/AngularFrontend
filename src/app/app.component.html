@@ -14,9 +14,11 @@
   <!-- Highlight Card -->
   <div class="card highlight-card card-size">
     <span>Enter Username and Password to continue:</span>
-    <span>Username: </span><input (keyup)="onKey($event)">
+    <span>Username: </span>
+    <input (keyup)="onKey($event)">
     <p>{{values}}</p>
-    <span>Password: </span><input (keyup)="onKey($event)">
+    <span>Password: </span>
+    <input (keyup)="onKey($event)">
       <p>{{values}}</p>
     <button (click)="loginClick($event)" type="button">Login</button>
   </div>
