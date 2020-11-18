@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'login';
+  values = '';
+  onKey(event: any) {
+    this.values += event.target.value;
+  }
+
   loginClick(event: Event) {
     console.log('Login clicked', event);
   }
