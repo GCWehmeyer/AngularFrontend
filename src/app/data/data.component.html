@@ -13,14 +13,8 @@
 
   <!-- Highlight Card -->
   <div class="card highlight-card card-size">
-    <span>Enter Username and Password to continue:</span>
-    <h1>Username: </h1>
-    <input (keyup)="onKey($event)">
-    <p>{{values}}</p>
-    <h2>Password: </h2>
-    <input (keyup)="onKey($event)">
-      <p>{{values}}</p>
-    <button (click)="loginClick($event)" type="button">Login</button>
+    <span>Please choose a file to upload:</span>
+    <button (click)="uploadFile($event)" type="button">Upload</button>
   </div>
 
 </div>
