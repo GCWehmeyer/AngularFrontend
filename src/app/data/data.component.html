@@ -3,7 +3,7 @@
   <img
     width="40"
     alt="App logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+    src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fthenounproject.com%2Fterm%2Ftech%2F&psig=AOvVaw1IhzVECo3bg2RHliHCTLsa&ust=1605799701297000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMio_Ju0jO0CFQAAAAAdAAAAABAI"
   />
   <span>GC Wehmeyer - Project2</span>
     <div class="spacer"></div>
@@ -14,7 +14,22 @@
   <!-- Highlight Card -->
   <div class="card highlight-card card-size">
     <span>Please choose a file to upload:</span>
-    <button (click)="uploadFile($event)" type="button">Upload</button>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text upload" id="btnUpload">Upload</span>
+      </div>
+      <div class="custom-file">
+          <form action="/api/upload" method="post" enctype="multipart/form-data">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+          </form>
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+
+    <input  (change)="fileChange($event)"  type="file"  class="custom-file-input"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
+    <span  class="input-group-text upload"  (click)="upload()"  id="btnUpload">Upload</span>
+    <!--<button (click)="uploadFile($event)" type="button">Upload</button>-->
   </div>
 
 </div>
