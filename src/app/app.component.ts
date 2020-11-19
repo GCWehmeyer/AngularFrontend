@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,10 @@ export class AppComponent {
   loginClick(event: Event) {
     console.log('Login clicked', event);
   }*/
+
+constructor(private router: Router){}
+
+  test(): void {
+    this.router.navigate(['/data']);
+  }
 }

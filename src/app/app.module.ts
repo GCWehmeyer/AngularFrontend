@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataComponent } from './data/data.component';
+import { RouterModule } from '@angular/router';
+import { ClassifyComponent } from './classify/classify.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { ApiserviceService } from './services/apiservice.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataComponent
+    DataComponent,
+    ClassifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([
-      {path: 'app', component: AppComponent},
-      {path: 'data', component: DataComponent}
-    ])
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
