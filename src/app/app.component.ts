@@ -6,13 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'login';
   values = '';
-  onKey(event: any) {
+  /*onKey(event: any) {
     this.values += event.target.value;
   }
 
   loginClick(event: Event) {
     console.log('Login clicked', event);
-  }
+  }*/
 }

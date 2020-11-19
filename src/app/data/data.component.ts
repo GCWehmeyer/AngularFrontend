@@ -11,20 +11,20 @@ export class DataComponent implements OnInit {
 
   uploadedFiles: Array < File > ;
   constructor(private http: HttpClient) { }
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  fileChange(element) {
+  fileChange(element): void {
     this.uploadedFiles = element.target.files;
   }
 
-  upload() {
-    let formData = new FormData();
-    for (var i = 0; i < this.uploadedFiles.length; i++) {
-        formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
-    }
+  upload(): void{
+    const formData = new FormData();
+    /*for (var i = 0; i < this.uploadedFiles.length; i++) {
+     //   formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+  }*/
     this.http.post('/api/upload', formData)
     .subscribe((response) => {
          console.log('response received is ', response);
-    })
+    });
   }
 }
