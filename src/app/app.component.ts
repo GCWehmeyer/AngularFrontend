@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  values = '';
+
   /*onKey(event: any) {
     this.values += event.target.value;
   }
