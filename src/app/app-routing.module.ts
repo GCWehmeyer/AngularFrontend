@@ -4,7 +4,9 @@ import { ClassifyComponent } from './classify/classify.component';
 import { DataComponent } from './data/data.component';
 
 const routes: Routes = [
-  {path: '', component: ClassifyComponent}
+  {path: '', redirectTo: 'classify', pathMatch: 'full'},
+  {path: 'classify', component: ClassifyComponent},
+  {path: 'data', component: DataComponent}
   ];
 
 @NgModule({

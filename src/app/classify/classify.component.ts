@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule} from '@angular/common/http';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient, HttpClientModule, HttpEventType, HttpErrorResponse} from '@angular/common/http';
 import { ApiserviceService } from '../services/apiservice.service';
+import { of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Component({
@@ -11,13 +13,47 @@ import { Injectable } from '@angular/core';
 
 export class ClassifyComponent implements OnInit {
   fileData: File = null;
-  constructor(private http: HttpClient,  private API: ApiserviceService) { }
+  @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef;
+  files = [];
+  constructor(private API: ApiserviceService) { }
 
   ngOnInit(): void {
   }
 
-  fileProgress(fileInput: any): void {
-    this.fileData = <File>fileInput.target.files[0];
+  uploadFile(file): void {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    file.inProgress = true;
+    this.API.upload(formData).pipe(
+      map(event => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            file.progress = Math.round(event.loaded * 100 / event.total);
+            break;
+          case HttpEventType.Response:
+            return event;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        file.inProgress = false;
+        return of(`Upload failed: ${file.data.name}`);
+      })).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+          console.log(event.body);
+        }
+      });
+  }
+
+  onClick(): void {
+    const fileUpload = this.fileUpload.nativeElement;
+    fileUpload.onchange = () => {
+      for (let index = 0; index < fileUpload.files.length(); index++) {
+        const file = fileUpload.files[index];
+        this.files.push({ data: file, inProgress: false, progress: 0});
+      }
+      this.uploadFile(fileUpload);
+    };
+    fileUpload.click();
   }
 
   testing(): any{
@@ -26,14 +62,14 @@ export class ClassifyComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    const formData = new FormData();
-    formData.append('file', this.fileData);
-    this.http.post('/', formData)
-      .subscribe(res => {
-        console.log(res);
-        alert('SUCCESS !!');
-      });
-  }
-
 }
+
+/* onSubmit(): void {
+  const formData = new FormData();
+  formData.append('file', this.fileData);
+  this.http.post('/api', formData)
+    .subscribe(res => {
+      console.log(res);
+      alert('SUCCESS !!');
+    });
+}*/
