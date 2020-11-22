@@ -12,6 +12,10 @@ body {
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
 
+.container {
+  margin-bottom: 12rem;
+}
+
 .cover-container {
   max-width: 42rem;
 }
@@ -133,6 +137,10 @@ height: calc(2.25rem + 2px);
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+}
+
+.upload {
+  cursor: pointer;
 }
 
 /*
